@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#002340</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#ffaf00</color>
+    <color name="colorToolbar">#00ffffff</color>
+    <color name="colorBackground">#ffffff</color>
+    <color name="colorBackgroundGray">#ededed</color>
+    <color name="colorLight">#ffffff</color>
+    <color name="colorTaskDescription">#2a2a2a</color>
+    <color name="colorText">#000000</color>
+    <color name="colorTextLight">#ffffff</color>
+    <color name="colorNavigation">#dedede</color>
+    <color name="colorTextDarkerLight">#727272</color>
+    <color name="colorGray">#ebeff4</color>
+    <color name="colorControlAccent">#ffaf00</color>
+    <color name="colorLink">#ff2231d4</color>
+    <color name="colorPopupBackground">#CC000000</color>
+    <color name="colorSeparator">#e1e1e1</color>
+    <color name="colorNavbarNotification">#ffaf00</color>
+    <color name="colorTransparent">#00000000</color>
+</resources>

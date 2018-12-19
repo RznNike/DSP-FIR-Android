@@ -1,0 +1,117 @@
+apply plugin: 'com.android.application'
+
+ext {
+    APK_NAME = 'DSP-FIR-Android'
+}
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.0"
+    }
+    buildTypes {
+        debug {
+        }
+        staging {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${APK_NAME}_${variant.versionName}(${variant.versionCode})_${variant.name}.apk"
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+        checkAllWarnings true
+        ignoreWarnings false
+        warningsAsErrors false
+        checkDependencies true
+        htmlReport true
+        explainIssues true
+        noLines false
+        textOutput "stdout"
+    }
+
+    afterEvaluate {
+        applicationVariants.all {
+            variant ->
+                def variantName = variant.name.capitalize()
+                project.tasks["compile${variantName}Sources"].dependsOn(project.tasks["lint${variantName}"])
+        }
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':device')
+    implementation project(':data')
+
+    implementation androidxDependencies.appCompat
+    implementation androidxDependencies.browser
+    implementation androidxDependencies.material
+    implementation androidxDependencies.recyclerView
+    implementation androidxDependencies.cardView
+    implementation androidxDependencies.annotation
+    implementation androidxDependencies.constraintLayout
+
+    implementation moxyDependencies.moxy
+    implementation moxyDependencies.moxyAppCompat
+    annotationProcessor moxyDependencies.moxyCompiler
+
+    implementation butterKnifeDependencies.butterknife
+    annotationProcessor butterKnifeDependencies.butterknifeCompiler
+
+    implementation navigationDependence
+
+    implementation logsDependencies.slf4j
+    implementation logsDependencies.logback
+    implementation logsDependencies.mail
+    implementation logsDependencies.activation
+
+    implementation streamDependence
+
+    compileOnly lombokDependencies.lombok
+    annotationProcessor lombokDependencies.lombokProcessor
+
+    annotationProcessor daggerDependencies.daggerCompiler
+    implementation daggerDependencies.dagger
+    implementation daggerDependencies.daggerAndroid
+    implementation daggerDependencies.daggerAndroidSupport
+    annotationProcessor daggerDependencies.daggerAndroidProcessor
+
+    implementation rxjavaDependencies.rxjava
+    implementation rxjavaDependencies.rxandroid
+    implementation rxjavaDependencies.rxpreferences
+
+    implementation fastadapterDependencies.fastadapter
+    implementation fastadapterDependencies.commons
+    implementation fastadapterDependencies.extensionsExpandable
+    implementation fastadapterDependencies.extensions
+
+    implementation guavaDependence
+
+    implementation materialDialogsDependencies.core
+    implementation materialDialogsDependencies.commons
+
+    implementation dexterDependence
+
+    implementation ahBottomNavigationDependence
+
+    implementation materialSpinnerDependence
+
+    implementation mpAndroidChartDependence
+}
